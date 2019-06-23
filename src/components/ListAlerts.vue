@@ -3,9 +3,7 @@
     <md-dialog :md-active.sync="showModalForm">
       <md-dialog-title>Alerta</md-dialog-title>
       <md-dialog-actions>
-        <FormAlert/>
-        <md-button class="md-primary" @click="showModalForm = false">Fechar</md-button>
-        <md-button class="md-primary" @click="showModalForm = false">Salvar Alerta</md-button>
+        <FormAlert @toggleModalForm="toggleModalForm" @saveForm="onSave"/>
       </md-dialog-actions>
     </md-dialog>
    <md-empty-state
@@ -14,6 +12,7 @@
       md-description="Criando um Alerta, assim que o onibus desejado estiver próximo você será avisado">
       <md-button class="md-primary md-raised" @click="showModalForm = true">Crie Seu Primeiro Alerta</md-button>
     </md-empty-state>
+    
   </div>
 </template>
 
@@ -23,13 +22,20 @@ import FormAlert from './FormAlert.vue'
 export default {
   data() {
       return{
-        showModalForm:false,
-        location:{}
+        showModalForm:false
       }
     },
   components:{
     FormAlert,
   },
+  methods:{
+    toggleModalForm(){ 
+      this.showModalForm = !this.showModalForm
+    },
+    onSave(data){
+
+    }
+  }
 
 }
 </script>
